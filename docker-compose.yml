@@ -1,0 +1,4 @@
+services:
+  artifact-check:
+    build: .
+    container_name: artifact-check
