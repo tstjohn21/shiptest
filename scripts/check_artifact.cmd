@@ -1,12 +1,10 @@
-@echo off
-set FILE=artifact\message.txt
+from pathlib import Path
 
-findstr /C:"DevOps" "%FILE%" >nul
+text = Path("artifact/message.txt").read_text(encoding="utf-8", errors="ignore")
 
-IF %ERRORLEVEL% EQU 0 (
-  echo Artifact check passed.
-  exit /b 0
-) ELSE (
-  echo Artifact check failed.
-  exit /b 1
-)
+if "DevOps" in text:
+    print("Artifact check passed.")
+    raise SystemExit(0)
+
+print("Artifact check failed.")
+raise SystemExit(1)
